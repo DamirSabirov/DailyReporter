@@ -10,4 +10,8 @@
     <Folder Include="Settings\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" Version="6.0.0" />
+  </ItemGroup>
+
 </Project>
