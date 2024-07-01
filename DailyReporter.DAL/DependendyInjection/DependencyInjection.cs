@@ -17,12 +17,12 @@ namespace DailyReporter.DAL.DependendyInjection
 	{
 		public static void AddDataAccessLayer(this IServiceCollection services, IConfiguration configuration)
 		{
-			var connectionString = configuration.GetConnectionString("MSSql");
+			var connectionString = configuration.GetConnectionString("PostgreSQL");
 
 			services.AddSingleton<DateInterceptor>();
 			services.AddDbContext<ApplicationDbContext>(options =>
 			{
-				options.UseSqlServer(connectionString);
+				options.UseNpgsql(connectionString);
 			});
 			services.InitRepositories();
 		}

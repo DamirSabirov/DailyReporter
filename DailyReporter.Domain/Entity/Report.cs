@@ -15,9 +15,9 @@ namespace DailyReporter.Domain.Entity
 		public User User { get; set; }
 		public long UserId { get; set; }
 		public DateTime CreatedAt { get; set; }
-		public long CreatedBy { get; set; }
+		public long? CreatedBy { get; set; }
 		public DateTime UpdatedAt { get; set; }
-		public long UpdatedBy { get; set; }
+		public long? UpdatedBy { get; set; }
 	}
 
 }
