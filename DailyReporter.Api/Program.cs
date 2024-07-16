@@ -1,14 +1,17 @@
 using DailyReporter.Api;
 using DailyReporter.Application.DependencyInjection;
 using DailyReporter.DAL.DependendyInjection;
+using DailyReporter.Domain.Settings;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection(JwtSettings.DefaultSection));
 
 builder.Services.AddControllers();
 builder.Services.AddSwagger();
+builder.Services.AddAuthentificationAndAutorization(builder);
 
 builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
 

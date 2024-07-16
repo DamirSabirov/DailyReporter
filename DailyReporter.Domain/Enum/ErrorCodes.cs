@@ -13,7 +13,11 @@ namespace DailyReporter.Domain.Enum
 		ReportAlreadyExists = 2,
 
 		UserNotFound = 11,
+		UserAlreadyExists = 12,
 
-		InternalServerError = 20
+		PasswordsNotEqual = 21,
+
+
+		InternalServerError = 30
 	}
 }
