@@ -16,6 +16,18 @@ namespace DailyReporter.DAL.Configurations
 			builder.Property(x => x.Id).ValueGeneratedOnAdd();
 			builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
 			builder.Property(x => x.Description).IsRequired().HasMaxLength(2000);
+
+			builder.HasData(new List<Report>()
+			{
+				new Report()
+				{
+					Id = 1,
+					Name = "Report 1",
+					Description = "Test",
+					UserId = 1,
+					CreatedAt = DateTime.UtcNow
+				}
+			});
 		}
 	}
 }

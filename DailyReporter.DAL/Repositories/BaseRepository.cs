@@ -16,15 +16,15 @@ namespace DailyReporter.DAL.Repositories
 			_dbContext = dbContext;
 		}
 
-		public Task<T> CreateAsync(T entity)
+		public async Task<T> CreateAsync(T entity)
 		{
 			if (entity == null)
 				throw new ArgumentNullException("Entity is null");
 
-			_dbContext.Add(entity);
-			_dbContext.SaveChanges();
+			await _dbContext.AddAsync(entity);
+			await _dbContext.SaveChangesAsync();
 
-			return Task.FromResult(entity);
+			return entity;
 		}
 
 		public IQueryable<T> GetAll()
@@ -38,7 +38,7 @@ namespace DailyReporter.DAL.Repositories
 				throw new ArgumentNullException("Entity is null");
 
 			_dbContext.Remove(entity);
-			_dbContext.SaveChanges();
+			_dbContext.SaveChangesAsync();
 
 			return Task.FromResult(entity);
 		}

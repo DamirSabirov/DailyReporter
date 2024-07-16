@@ -19,7 +19,9 @@ namespace DailyReporter.DAL.Interceptors
 				return base.SavingChanges(eventData, result);
 			}
 
-			var entries = dbContext.ChangeTracker.Entries<IAuditable>();
+			var entries = dbContext.ChangeTracker.Entries<IAuditable>()
+				.Where(x => x.State == EntityState.Added || x.State == EntityState.Modified)
+				.ToList();
 			foreach (var entry in entries)
 			{
 				if (entry.State == EntityState.Added)

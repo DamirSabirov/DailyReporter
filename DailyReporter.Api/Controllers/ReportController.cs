@@ -29,5 +29,57 @@ namespace DailyReporter.Api.Controllers
 			}
 			return BadRequest(response);
 		}
+
+		[HttpGet("reports/{userId}")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public async Task<ActionResult<BaseResult<ReportDto>>> GetUserReports(long userId)
+		{
+			var response = _reportService.GetReportsAsync(userId);
+			if (response.IsCompletedSuccessfully)
+			{
+				return Ok(response);
+			}
+			return BadRequest(response);
+		}
+
+		[HttpDelete("{id}")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public async Task<ActionResult<BaseResult<ReportDto>>> Delete(long id)
+		{
+			var response = _reportService.DeleteReportAsync(id);
+			if (response.IsCompletedSuccessfully)
+			{
+				return Ok(response);
+			}
+			return BadRequest(response);
+		}
+
+		[HttpPost]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public async Task<ActionResult<BaseResult<ReportDto>>> Create([FromBody]CreateReportDto dto)
+		{
+			var response = _reportService.CreateReportAsync(dto);
+			if (response.IsCompletedSuccessfully)
+			{
+				return Ok(response);
+			}
+			return BadRequest(response);
+		}
+
+		[HttpPut]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public async Task<ActionResult<BaseResult<ReportDto>>> Create([FromBody] UpdateReportDto dto)
+		{
+			var response = _reportService.UpdateReportAsync(dto);
+			if (response.IsCompletedSuccessfully)
+			{
+				return Ok(response);
+			}
+			return BadRequest(response);
+		}
 	}
 }
