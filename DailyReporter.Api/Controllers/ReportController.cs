@@ -1,13 +1,17 @@
-﻿using DailyReporter.Domain.Dto.Report;
+﻿using Asp.Versioning;
+using DailyReporter.Domain.Dto.Report;
 using DailyReporter.Domain.Interfaces.Services;
 using DailyReporter.Domain.Result;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DailyReporter.Api.Controllers
 {
-	[Route("api/v1/[controller]")]
+	[Authorize]
 	[ApiController]
+	[ApiVersion("1.0")]
+	[Route("api/v{version:apiVersion}/[controller]")]
 	public class ReportController : ControllerBase
 	{
 		private readonly IReportService _reportService;
