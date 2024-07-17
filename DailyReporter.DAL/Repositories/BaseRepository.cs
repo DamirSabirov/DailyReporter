@@ -32,26 +32,26 @@ namespace DailyReporter.DAL.Repositories
 			return _dbContext.Set<T>();
 		}
 
-		public Task<T> RemoveAsync(T entity)
+		public async Task<T> RemoveAsync(T entity)
 		{
 			if (entity == null)
 				throw new ArgumentNullException("Entity is null");
 
 			_dbContext.Remove(entity);
-			_dbContext.SaveChangesAsync();
+			await _dbContext.SaveChangesAsync();
 
-			return Task.FromResult(entity);
+			return entity;
 		}
 
-		public Task<T> UpdateAsync(T entity)
+		public async Task<T> UpdateAsync(T entity)
 		{
 			if (entity == null)
 				throw new ArgumentNullException("Entity is null");
 
 			_dbContext.Update(entity);
-			_dbContext.SaveChanges();
+			await _dbContext.SaveChangesAsync();
 
-			return Task.FromResult(entity);
+			return entity;
 		}
 	}
 }
